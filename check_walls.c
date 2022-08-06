@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_walls.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:59:33 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/02 20:57:43 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/03 11:28:01 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,36 @@ int check_cas(char *col, char **s, int x, int y)
     {
         if (col[y] == ' ')
         {
-            if (s[x + 1][y] == '0')
+            if (s[x + 1][y] == '0' || col[y + 1] == '0')
                 return (0);
         }
         else if (col[y] == '1')
         {
             if (s[x + 1][y] == '0' && col[y + 1] != '1')
                 return (0);
+            else if (col[y + 1] == '0')
+                return (0);
         }
+        else
+            return (0);
     }
-    return 0;
+    else if (s[x + 1] != NULL)
+    {
+        if (col[y] == ' ')
+        {
+            if (s[x + 1][y] == '0' || col[y + 1] == '0' || col[y + 1] == '0')
+                return (0);
+        }
+        else if (col[y] == '1')
+        {
+            if (s[x + 1][y] == '0' && col[y + 1] != '1')
+                return (0);
+            else if (col[y + 1] == '0')
+                return (0);
+        }
+        else
+            return (0);
+    }
 }
 
 int check_col(char *col, char **s, int x)
