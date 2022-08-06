@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/06 18:03:42 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/06 19:13:01 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -535,9 +535,12 @@ void	pars_map(t_data *data)
 
 void	player_born(t_data *data)
 {
-	
 	t_player	*player;
 
+	if (!pars_loop(data->s))
+	{
+		write(2, "Error: Map invalid\n", 19);
+	}
 	player = malloc(sizeof(t_player));
 	if (!player)
 	{
