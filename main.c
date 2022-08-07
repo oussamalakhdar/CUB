@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/06 19:13:01 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/07 10:58:34 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,6 @@ char	**read_map(t_data *data, char *s)
 			data->lmap++;
 	}
 	data->lmap++;
-	// data->s = malloc(sizeof(char *) * (data->lmap + 1));
-	// if (!(data->s))
-	// 	return (NULL);
 	close(data->fd);
 	data->fd = open(s, O_RDWR);
 	map_content(data);
@@ -540,6 +537,7 @@ void	player_born(t_data *data)
 	if (!pars_loop(data->s))
 	{
 		write(2, "Error: Map invalid\n", 19);
+		exit(1);
 	}
 	player = malloc(sizeof(t_player));
 	if (!player)

@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:22:54 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/06 17:25:16 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/07 09:18:22 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include "get_next_line.h"
 # include <math.h>
 # include <stdint.h>
-// # include "textures.h"
 
 # define PI 3.14159265
 # define WHITE 0xffffff
