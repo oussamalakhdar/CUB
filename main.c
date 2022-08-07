@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 14:20:31 by abayar           ###   ########.fr       */
+/*   Updated: 2022/08/07 14:32:18 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ int getcolor(char *s)
 		printf("Error: color not suported\n");
 		exit(1);
 	}
+	free(str);
 	return (color);
 }
 
