@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:59:33 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 19:10:38 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/07 19:54:00 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ int	check_first(char **s)
 	while (s[i])
 	{
 		if (s[i][0] != '1' && s[i][0] != ' ')
-		{
-			printf("-- %c", s[i][0]);
 			return (0);
-		}
 		i++;
 	}
 	return (1);
@@ -65,15 +62,9 @@ int check_cas(char *col, char **s, int x, int y)
 		else if (col[y] == '1')
 		{
 			if (ft_strlen(s[x + 1]) > y && s[x + 1][y] == '0' && col[y + 1] != '1')
-			{
-				printf("3  --[%c]\n", col[y + 1]);
 				return (0);
-			}
 			else if (col[y + 1] == '0')
-			{
-                printf("2   [%c]\n", col[y + 1]);
 				return (0);
-			}
 		}
 		else
 			return (0);
@@ -83,35 +74,35 @@ int check_cas(char *col, char **s, int x, int y)
 		if (col[y] == ' ')
 		{
 			if (s[x + 1][y] == '0' || col[y + 1] == '0' || s[x + 1][y + 1] == '0')
-			{
-				printf("4  --[%c]\n", col[y]);
 				return (0);
-			}
 			else if (s[x + 1][y] == '0' || col[y + 1] == '0' || s[x + 1][y + 1] == '0' || s[x - 1][y] == '0' || s[x - 1][y + 1] == '0'|| s[x - 1][y - 1] == '0'|| col[y - 1] == '0' || s[x - 1][y - 1] == '0')
-			{
-				printf("15  --[[%c][%d][%d][%c]\n", s[x + 1][y], x, y, col[y + 1]);
 				return (0);
-			}
 		}
 		else if (col[y] == '1')
 		{
 			if (s[x + 1][y] == '0' && col[y + 1] == ' ')
-			{
-				printf("*5  --[%c][%d][%d]\n", s[x + 1][y], x, y);
 				return (0);
-			}
 			else if (col[y + 1] == '0' && col[y + 2] == '\0')
+				return (0);
+		}
+	}
+	if (x == tabsize(s) - 1)
+	{
+		if (col[y] == ' ')
+		{
+			if (col[y + 1] == '0')
+				return (0);
+		}
+		else if (col[y] == '1')
+		{
+			if (col[y + 1] == '0')
 			{
-				printf("6  --[%c]\n", s[x + 1][y]);
+        		printf("11   [%c]\n", col[y + 1]);
 				return (0);
 			}
 		}
 	}
-	// if (x == tabsize(s) - 1)
-	// {
-	// 	if ()
-	// }
-	// return (1);
+	return (1);
 }
 
 int check_col(char *col, char **s, int x)
