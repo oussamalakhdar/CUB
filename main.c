@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 10:58:34 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/07 14:20:31 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,47 @@ int	ft_atoi(const char *str)
 	return (res * sign);
 }
 
+void	check_color(char *s)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (s[i])
+	{
+		if (s[i] == ',')
+			j++;
+		i++;
+	}
+	if (j != 2)
+	{
+		printf("Error: 3eye9ti\n");
+		exit(1);
+	}
+}
+
 int getcolor(char *s)
 {
 	char	**str;
+	int		color;
+	int		i;
 	
+	i = 0;
+	check_color(s);
 	str = ft_split(s,',');
-	return ((int)createRGB(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2])));
+	color = (int)createRGB(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2]));
+	while(str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	if (i != 3)
+	{
+		printf("Error: color not suported\n");
+		exit(1);
+	}
+	return (color);
 }
 
 int	ft_strncmp(char *s1, char *s2, int n)
@@ -125,8 +160,8 @@ void	map_content(t_data *data)
 	t_map *map;
 
 	map = malloc(sizeof(t_map));
-	map->C = 0;
-	map->F = 0;
+	map->C = -1;
+	map->F = -1;
 	s = get_next_line(data->fd);
 	data->str = ft_strdup("");
 	while(s)
@@ -140,9 +175,15 @@ void	map_content(t_data *data)
 		else if(ft_strncmp(s, "EA", 2) == 0)
 			map->EA = hack(ft_strdup(s + 3));
 		else if(ft_strncmp(s, "F", 1) == 0)
-			map->F = getcolor(ft_strdup(s + 2));
+		{
+			map->F = getcolor(s + 2);
+			// while(1);
+		}
 		else if(ft_strncmp(s, "C", 1) == 0)
-			map->C = getcolor(ft_strdup(s + 2));
+		{
+			map->C = getcolor(s + 2);
+
+		}
 		else if(ft_strncmp(s, "\n", 1) != 0)
 			data->str = ft_strjoin(data->str, s);
 		free(s);
@@ -608,7 +649,7 @@ void	init_texture(t_data *data)
 	text->img2 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->SO, &w, &h);
 	text->img3 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->WE, &w, &h);
 	text->img4 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->EA, &w, &h);
-	if (!text->img1 || !text->img3 || !text->img2 || !text->img4 || data->mapcontent->F == 0 || data->mapcontent->C == 0)
+	if (!text->img1 || !text->img3 || !text->img2 || !text->img4 || data->mapcontent->F == -1 || data->mapcontent->C == -1)
 	{
 		write(2, "Error: bad argument\n", 20);
 		exit(1);
