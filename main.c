@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 14:32:18 by abayar           ###   ########.fr       */
+/*   Updated: 2022/08/07 14:53:13 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,27 +66,37 @@ void	check_color(char *s)
 	}
 }
 
-int getcolor(char *s)
+void	free_tab(char **str)
 {
-	char	**str;
-	int		color;
-	int		i;
-	
+	int	i;
+
 	i = 0;
-	check_color(s);
-	str = ft_split(s,',');
-	color = (int)createRGB(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2]));
 	while(str[i])
 	{
 		free(str[i]);
 		i++;
 	}
+	free(str);
+}
+
+int getcolor(char *s)
+{
+	char	**str;
+	int		color;
+	int		i;
+
+	i = 0;
+	check_color(s);
+	str = ft_split(s,',');
+	color = (int)createRGB(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2]));
+	while(str[i])
+		i++;
+	free_tab(str);
 	if (i != 3)
 	{
 		printf("Error: color not suported\n");
 		exit(1);
 	}
-	free(str);
 	return (color);
 }
 
@@ -143,16 +153,28 @@ int	destroy(t_data *data)
 
 char	*hack(char *s)
 {
-	int	i;
+	int		i;
+	char	**str;
+	char	*ret;
 
 	i = 0;
-	while(s[i] != '\0')
+	str = ft_split(s, ' ');
+	while (str[i])
+		i++;
+	if (i != 1)
 	{
-		if (s[i] == '\n')
-			s[i] = 0;
+		printf("Error: invalid image\n");
+		exit(1);
+	}
+	ret = ft_strdup(str[0]);
+	while(ret[i] != '\0')
+	{
+		if (ret[i] == '\n')
+			ret[i] = 0;
 		i++;
 	}
-	return (s);
+	free_tab(str);
+	return (ret);
 }
 
 void	map_content(t_data *data)
@@ -165,26 +187,21 @@ void	map_content(t_data *data)
 	map->F = -1;
 	s = get_next_line(data->fd);
 	data->str = ft_strdup("");
+	// while(1);
 	while(s)
 	{
 		if(ft_strncmp(s, "NO", 2) == 0)
-			map->NO = hack(ft_strdup(s + 3));
+			map->NO = hack(s + 3);
 		else if(ft_strncmp(s, "SO", 2) == 0)
-			map->SO = hack(ft_strdup(s + 3));
+			map->SO = hack(s + 3);
 		else if(ft_strncmp(s, "WE", 2) == 0)
-			map->WE = hack(ft_strdup(s + 3));
+			map->WE = hack(s + 3);
 		else if(ft_strncmp(s, "EA", 2) == 0)
-			map->EA = hack(ft_strdup(s + 3));
+			map->EA = hack(s + 3);
 		else if(ft_strncmp(s, "F", 1) == 0)
-		{
 			map->F = getcolor(s + 2);
-			// while(1);
-		}
 		else if(ft_strncmp(s, "C", 1) == 0)
-		{
 			map->C = getcolor(s + 2);
-
-		}
 		else if(ft_strncmp(s, "\n", 1) != 0)
 			data->str = ft_strjoin(data->str, s);
 		free(s);
