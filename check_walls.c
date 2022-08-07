@@ -6,18 +6,28 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:59:33 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 16:42:00 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/07 19:10:38 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	tabsize(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	check_first(char **s)
 {
 	int	i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i][0] != '1' && s[i][0] != ' ')
 		{
@@ -34,13 +44,13 @@ int	check_char(char *s)
 	int	i;
 
 	i = 0;
-	while(s[i])
+	while (s[i])
 	{
 		if (s[i] != '0' && s[i] != '1' && s[i] != 'N' && s[i] != 'S' && s[i] != 'E' && s[i] != 'W' && s[i] != ' ')
 			return (0);
 		i++;
 	}
-	return(1);
+	return (1);
 }
 
 int check_cas(char *col, char **s, int x, int y)
@@ -97,8 +107,11 @@ int check_cas(char *col, char **s, int x, int y)
 			}
 		}
 	}
-	// printf("x= %d y =%d\n", x,y);
-	return (1);
+	// if (x == tabsize(s) - 1)
+	// {
+	// 	if ()
+	// }
+	// return (1);
 }
 
 int check_col(char *col, char **s, int x)
