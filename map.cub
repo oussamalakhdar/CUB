@@ -1,7 +1,7 @@
-NO ./StoneHitler.xpm
-SO ./wall.xpm
-WE ./Blue.xpm
-EA ./Stoneflag.xpm
+NO ./textures/StoneHitler.xpm
+SO ./textures/wall.xpm
+WE ./textures/Blue.xpm
+EA ./textures/Stoneflag.xpm
 
 C 102,178,255
 F 64,64,64

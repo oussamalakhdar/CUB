@@ -6,21 +6,11 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 13:59:33 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/07 19:54:00 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 09:26:24 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-int	tabsize(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 int	check_first(char **s)
 {
