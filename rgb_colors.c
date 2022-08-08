@@ -6,15 +6,15 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 09:33:33 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 09:35:37 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 15:54:29 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-unsigned long createRGB(int r, int g, int b)
-{   
-    return ((r & 0xff) << 16) + ((g & 0xff) << 8) + (b & 0xff);
+unsigned long	creatergb(int r, int g, int b)
+{
+	return ((r * 65536) + (g * 256) + b);
 }
 
 void	check_color(char *s)
@@ -37,7 +37,7 @@ void	check_color(char *s)
 	}
 }
 
-int getcolor(char *s)
+int	getcolor(char *s)
 {
 	char	**str;
 	int		color;
@@ -45,9 +45,9 @@ int getcolor(char *s)
 
 	i = 0;
 	check_color(s);
-	str = ft_split(s,',');
-	color = (int)createRGB(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2]));
-	while(str[i])
+	str = ft_split(s, ',');
+	color = (int)creatergb(ft_atoi(str[0]), ft_atoi(str[1]), ft_atoi(str[2]));
+	while (str[i])
 		i++;
 	free_tab(str);
 	if (i != 3)
@@ -74,7 +74,7 @@ char	*hack(char *s)
 		exit(1);
 	}
 	ret = ft_strdup(str[0]);
-	while(ret[i] != '\0')
+	while (ret[i] != '\0')
 	{
 		if (ret[i] == '\n')
 			ret[i] = 0;

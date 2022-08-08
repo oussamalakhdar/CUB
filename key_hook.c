@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 09:40:54 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 09:58:26 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:38:56 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,26 @@ int	destroy(t_data *data)
 	return (0);
 }
 
-int	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color)
+int	draw_line(void *mlx, void *win, int beginx, int beginy, int endx, int endy, int color)
 {
-	float	deltaX;
-	float	deltaY;
+	float	deltax;
+	float	deltay;
 	int		pixels;
-	float	pixelX;
-	float	pixelY;
+	float	pixelx;
+	float	pixely;
 
-	deltaX = endX - beginX;
-	deltaY = endY - beginY;
-	pixels = sqrt((deltaX * deltaX) + (deltaY * deltaY));
-	deltaX /= pixels;
-	deltaY /= pixels;
-	pixelX = beginX;
-	pixelY = beginY;    
+	deltax = endx - beginx;
+	deltay = endy - beginy;
+	pixels = sqrt((deltax * deltax) + (deltay * deltay));
+	deltax /= pixels;
+	deltay /= pixels;
+	pixelx = beginx;
+	pixely = beginy;
 	while (pixels)
 	{
-		mlx_pixel_put(mlx, win, pixelX, pixelY, color);
-		pixelX += deltaX;
-		pixelY += deltaY;
+		mlx_pixel_put(mlx, win, pixelx, pixely, color);
+		pixelx += deltax;
+		pixely += deltay;
 		--pixels;
 	}
 	return (0);
@@ -74,11 +74,18 @@ int	draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, 
 
 void	clear_collor_buffer(t_data *data)
 {
-	for (int y = 0; y < WIN_WIDH; ++y)
+	int	y;
+	int	x;
+
+	y = 0;
+	x = 0;
+	while (y < WIN_WIDH)
 	{
-		for(int x = 0; x < (data->cmap * MINIMAP_SIZE); ++x)
+		while (x < (data->cmap * MINIMAP_SIZE))
 		{
 			data->collor_buffer[(y * data->sizepixel) + x] = BLACK;
+			x++;
 		}
+		y++;
 	}
 }

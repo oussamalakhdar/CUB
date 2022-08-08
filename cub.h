@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:22:54 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/08 11:13:35 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:54:53 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ typedef struct s_player {
 }	t_player;
 
 typedef struct s_map {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
-	int		F;
-	int		C;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int		f;
+	int		c;
 }	t_map;
 
 typedef struct s_text {
@@ -120,18 +120,18 @@ typedef struct s_data {
 }	t_data;
 
 int				key_hook(int keycode, t_data *vars);
-void			pars_map(t_data *data);
+void			drawing(t_data *data);
 int				ft_strncmp(char *s1, char *s2, int n);
 char			**ft_split(char const *s, char c);
-int 			pars_loop(char **s);
-int 			check_col(char *col, char **s, int x);
-int 			check_cas(char *col, char **s, int x, int y);
+int				pars_loop(char **s);
+int				check_col(char *col, char **s, int x);
+int				check_cas(char *col, char **s, int x, int y);
 int				ft_atoi(const char *str);
 int				ft_strncmp(char *s1, char *s2, int n);
 void			free_tab(char **str);
-int	 			count_length(char **s);
+int				count_length(char **s);
 int				tabsize(char **s);
-unsigned long	createRGB(int r, int g, int b);
+unsigned long	creatergb(int r, int g, int b);
 void			check_color(char *s);
 int				getcolor(char *s);
 char			*hack(char *s);
@@ -141,7 +141,7 @@ int				destroy(t_data *data);
 int				draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
 void			clear_collor_buffer(t_data *data);
 void			map_content(t_data *data);
-char			**read_map(t_data *data, char *s);
+void			read_map(t_data *data, char *s);
 void			help_pars(t_data *data, int i, int j);
 void			init_player_dir(t_data *data, char c);
 void			render_player(t_data *data, int i, int j);
@@ -151,5 +151,12 @@ void			find_main(t_data *data);
 void			init_direction(t_ray *ray, int x, int y);
 void			initialize_rays(t_data *data);
 void			my3d_painting(t_data *data);
+int				check_first(char **s);
+int				check_char(char *s);
+void			player_born(t_data *data);
+void			overlap(t_data *data);
+void			drawing(t_data *data);
+void			update_image(t_data *data, int *c);
+void			minimapdraw(t_data *data);
 
 #endif

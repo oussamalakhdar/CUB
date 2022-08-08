@@ -6,11 +6,29 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:04:19 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 10:17:11 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:47:55 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	map_content2(t_data *data, t_map *map, char *s)
+{
+	if (ft_strncmp(s, "NO", 2) == 0)
+		map->no = hack(s + 3);
+	else if (ft_strncmp(s, "SO", 2) == 0)
+		map->so = hack(s + 3);
+	else if (ft_strncmp(s, "WE", 2) == 0)
+		map->we = hack(s + 3);
+	else if (ft_strncmp(s, "EA", 2) == 0)
+		map->ea = hack(s + 3);
+	else if (ft_strncmp(s, "F", 1) == 0)
+		map->f = getcolor(s + 2);
+	else if (ft_strncmp(s, "C", 1) == 0)
+		map->c = getcolor(s + 2);
+	else if (ft_strncmp(s, "\n", 1) != 0)
+		data->str = ft_strjoin(data->str, s);
+}
 
 void	map_content(t_data *data)
 {
@@ -18,26 +36,13 @@ void	map_content(t_data *data)
 	t_map	*map;
 
 	map = malloc(sizeof(t_map));
-	map->C = -1;
-	map->F = -1;
+	map->c = -1;
+	map->f = -1;
 	s = get_next_line(data->fd);
 	data->str = ft_strdup("");
 	while (s)
 	{
-		if(ft_strncmp(s, "NO", 2) == 0)
-			map->NO = hack(s + 3);
-		else if(ft_strncmp(s, "SO", 2) == 0)
-			map->SO = hack(s + 3);
-		else if(ft_strncmp(s, "WE", 2) == 0)
-			map->WE = hack(s + 3);
-		else if(ft_strncmp(s, "EA", 2) == 0)
-			map->EA = hack(s + 3);
-		else if(ft_strncmp(s, "F", 1) == 0)
-			map->F = getcolor(s + 2);
-		else if(ft_strncmp(s, "C", 1) == 0)
-			map->C = getcolor(s + 2);
-		else if(ft_strncmp(s, "\n", 1) != 0)
-			data->str = ft_strjoin(data->str, s);
+		map_content2(data, map, s);
 		free(s);
 		s = get_next_line(data->fd);
 	}
@@ -45,7 +50,7 @@ void	map_content(t_data *data)
 	data->mapcontent = map;
 }
 
-char	**read_map(t_data *data, char *s)
+void	read_map(t_data *data, char *s)
 {
 	char	p;
 	int		l;
@@ -70,7 +75,6 @@ char	**read_map(t_data *data, char *s)
 	map_content(data);
 	data->s = ft_split(data->str, '\n');
 	data->cmap = count_length(data->s);
-	return (data->s);
 }
 
 void	help_pars(t_data *data, int i, int j)

@@ -6,13 +6,13 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 09:17:49 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 10:00:25 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 12:45:49 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
 
-int ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int					i;
 	int					sign;
@@ -70,7 +70,7 @@ void	free_tab(char **str)
 	free(str);
 }
 
-int     count_length(char **s)
+int	count_length(char **s)
 {
 	int	i;
 	int	j;
@@ -79,7 +79,7 @@ int     count_length(char **s)
 	i = 0;
 	j = 0;
 	k = 0;
-	while(s[i])
+	while (s[i])
 	{
 		j = ft_strlen(s[i]);
 		if (j > k)
