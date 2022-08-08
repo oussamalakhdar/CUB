@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:49:18 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 16:51:59 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:22:10 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,39 @@ void	drawing(t_data *data)
 	clear_collor_buffer(data);
 	if (data->map == 1)
 		minimapdraw(data);
+}
+
+void	minimap_utils(t_data *data, int i, int j)
+{
+	if (data->s[i][j] == '1')
+		data->color = WHITE;
+	else if (data->s[i][j] == 'E')
+		data->color = BLEU;
+	else
+		data->color = BLACK;
+}
+
+void	minimapdraw(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	data->yi = 0;
+	while (data->s[i])
+	{
+		j = 0;
+		data->xi = 0;
+		while (data->s[i][j])
+		{
+			minimap_utils(data, i, j);
+			if (data->s[i][j] != '\n' && data->s[i][j] != ' ')
+				help_pars(data, data->xi, data->yi);
+			j++;
+			data->xi += MINIMAP_SIZE;
+		}
+		data->yi += MINIMAP_SIZE;
+		i++;
+	}
+	mini_player(data);
 }

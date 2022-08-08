@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:22:54 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/08 16:54:53 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:22:34 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,8 @@ void			player_born(t_data *data);
 void			overlap(t_data *data);
 void			drawing(t_data *data);
 void			update_image(t_data *data, int *c);
+void			minimapdraw(t_data *data);
+void			minimap_utils(t_data *data, int i, int j);
 void			minimapdraw(t_data *data);
 
 #endif

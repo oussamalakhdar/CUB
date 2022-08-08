@@ -6,7 +6,7 @@
 /*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 22:12:13 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/08 16:56:23 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/08 21:32:24 by olakhdar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	update_image(t_data *data, int *c)
 				{
 					if (ray[y].angle > 90 && ray[y].angle < 270)
 						data->collor_buffer[(x * data->sizepixel) + y] = \
-						data->text->texture3[((int)(ray[y].of_y - 1) * \
+						data->text->texture3[((int)(ray[y].of_y - 1) *\
 						data->text->sizepixel3) + (int)(ray[y].of_x * 2)];
 					else
 						data->collor_buffer[(x * data->sizepixel) + y] = \
-						data->text->texture4[((int)(ray[y].of_y - 1) * \
+						data->text->texture4[((int)(ray[y].of_y - 1) *\
 						data->text->sizepixel4) + (int)(ray[y].of_x * 2)];
 				}
 				else if (ray[y].dir == '2')
@@ -57,12 +57,12 @@ void	update_image(t_data *data, int *c)
 					if ((ray[y].angle > 180 && ray[y].angle < 360) || \
 						(ray[y].angle < 0 && ray[y].angle > -90))
 						data->collor_buffer[(x * data->sizepixel) + y] = \
-						data->text->texture1[(int)(ray[y].of_y - 1) * \
+						data->text->texture1[(int)(ray[y].of_y - 1) *\
 						data->text->sizepixel1 + (int)(ray[y].of_x * 2)];
 					else if ((ray[y].angle > 0 && ray[y].angle < 180) || \
 							(ray[y].angle > 360 && ray[y].angle < 400))
 						data->collor_buffer[(x * data->sizepixel) + y] = \
-						data->text->texture2[(int)(ray[y].of_y - 1) * \
+						data->text->texture2[(int)(ray[y].of_y - 1) *\
 						data->text->sizepixel2 + (int)(ray[y].of_x * 2)];
 				}
 			}
@@ -73,36 +73,6 @@ void	update_image(t_data *data, int *c)
 		}
 		y++;
 	}
-}
-
-void	minimapdraw(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	data->yi = 0;
-	while (data->s[i])
-	{
-		j = 0;
-		data->xi = 0;
-		while (data->s[i][j])
-		{
-			if (data->s[i][j] == '1')
-				data->color = WHITE;
-			else if (data->s[i][j] == 'E')
-				data->color = BLEU;
-			else
-				data->color = BLACK;
-			if (data->s[i][j] != '\n' && data->s[i][j] != ' ')
-				help_pars(data, data->xi, data->yi);
-			j++;
-			data->xi += MINIMAP_SIZE;
-		}
-		data->yi += MINIMAP_SIZE;
-		i++;
-	}
-	mini_player(data);
 }
 
 int	loop_game(t_data *data)
@@ -143,13 +113,11 @@ int	loop_game(t_data *data)
 	return (0);
 }
 
-void	init_texture(t_data *data)
+void	init_texture2(t_text *text, t_data *data)
 {
-	t_text	*text;
 	int		w;
 	int		h;
 
-	text = malloc(sizeof(t_text));
 	text->img1 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->no, &w, &h);
 	text->img2 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->so, &w, &h);
 	text->img3 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->we, &w, &h);
@@ -161,6 +129,14 @@ void	init_texture(t_data *data)
 		write(2, "Error: bad argument\n", 20);
 		exit(1);
 	}
+}
+
+void	init_texture(t_data *data)
+{
+	t_text	*text;
+
+	text = malloc(sizeof(t_text));
+	init_texture2(text, data);
 	text->texture1 = (int *)mlx_get_data_addr(text->img1, \
 	&text->byte1, &text->sizepixel1, &text->endia1);
 	text->texture2 = (int *)mlx_get_data_addr(text->img2, \
