@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   update_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/09 09:34:42 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/09 09:35:17 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:56:20 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+void	init_texture2(t_text *text, t_data *data)
+{
+	int		w;
+	int		h;
+
+	text->img1 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->no, &w, &h);
+	text->img2 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->so, &w, &h);
+	text->img3 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->we, &w, &h);
+	text->img4 = mlx_xpm_file_to_image(data->mlx, data->mapcontent->ea, &w, &h);
+	if (!text->img1 || !text->img3 || !text->img2
+		|| !text->img4 || data->mapcontent->f == -1 || \
+		data->mapcontent->c == -1)
+	{
+		write(2, "Error: bad argument\n", 20);
+		exit(1);
+	}
+}
 
 void	if_v(t_data *data, t_ray *ray, int x, int y)
 {

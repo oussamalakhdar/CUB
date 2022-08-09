@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:38:01 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 12:36:01 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:35:30 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,10 @@ void	mini_player(t_data *data)
 	render_player(data, data->player->x - 5, data->player->y - 5);
 	while (i < data->cmap * MINIMAP_SIZE)
 	{
-		draw_line(data->mlx, data->win,
-			ray[i].xbegin, ray[i].ybegin,
-			ray[i].xend, ray[i].yend, BLEU);
+		draw_line(data, ray[i].xend, ray[i].yend, BLEU);
 		i++;
 	}
-	draw_line(data->mlx, data->win,
-		data->player->x, data->player->y,
+	draw_line(data, \
 		data->player->x + (50 * cos(data->player->angle * PI / 180.0)),
 		data->player->y + (sin(data->player->angle * PI / 180.0) * 50), RED);
 }

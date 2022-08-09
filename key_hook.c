@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 09:40:54 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 14:38:56 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:31:31 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	destroy(t_data *data)
 	return (0);
 }
 
-int	draw_line(void *mlx, void *win, int beginx, int beginy, int endx, int endy, int color)
+int	draw_line(t_data *data, int endx, int endy, int color)
 {
 	float	deltax;
 	float	deltay;
@@ -55,16 +55,16 @@ int	draw_line(void *mlx, void *win, int beginx, int beginy, int endx, int endy, 
 	float	pixelx;
 	float	pixely;
 
-	deltax = endx - beginx;
-	deltay = endy - beginy;
+	deltax = endx - data->player->x;
+	deltay = endy - data->player->y;
 	pixels = sqrt((deltax * deltax) + (deltay * deltay));
 	deltax /= pixels;
 	deltay /= pixels;
-	pixelx = beginx;
-	pixely = beginy;
+	pixelx = data->player->x;
+	pixely = data->player->y;
 	while (pixels)
 	{
-		mlx_pixel_put(mlx, win, pixelx, pixely, color);
+		mlx_pixel_put(data->mlx, data->win, pixelx, pixely, color);
 		pixelx += deltax;
 		pixely += deltay;
 		--pixels;

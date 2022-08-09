@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 16:49:18 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/09 09:18:20 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:36:26 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,9 @@ void	overlap(t_data *data)
 
 void	drawing(t_data *data)
 {
-	// int	count;
-
-	// count = 0;
 	initialize_rays(data);
 	my3d_painting(data);
-	update_image(data);//, &count);
+	update_image(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 	clear_collor_buffer(data);
 	if (data->map == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:22:54 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/09 09:35:34 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/09 11:21:10 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ char			*hack(char *s);
 int				key_hook(int keycode, t_data *vars);
 int				key_hook2(int keycode, t_data *vars);
 int				destroy(t_data *data);
-int				draw_line(void *mlx, void *win, int beginX, int beginY, int endX, int endY, int color);
+int				draw_line(t_data *data, int endX, int endY, int color);
 void			clear_collor_buffer(t_data *data);
 void			map_content(t_data *data);
 void			read_map(t_data *data, char *s);
@@ -156,9 +156,10 @@ int				check_char(char *s);
 void			player_born(t_data *data);
 void			overlap(t_data *data);
 void			drawing(t_data *data);
-void			update_image(t_data *data);//, int *c);
+void			update_image(t_data *data);
 void			minimapdraw(t_data *data);
 void			minimap_utils(t_data *data, int i, int j);
 void			minimapdraw(t_data *data);
+void			init_texture2(t_text *text, t_data *data);
 
 #endif
