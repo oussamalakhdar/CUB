@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olakhdar <olakhdar@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:04:19 by olakhdar          #+#    #+#             */
-/*   Updated: 2022/08/08 16:47:55 by olakhdar         ###   ########.fr       */
+/*   Updated: 2022/08/17 19:06:43 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ void	map_content(t_data *data)
 void	read_map(t_data *data, char *s)
 {
 	char	p;
-	int		l;
 
-	l = 0;
 	data->lmap = 0;
 	data->map = 0;
 	data->fd = open(s, O_RDWR);

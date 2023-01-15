@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/abayar/Desktop/cub3D'
+gcc  -Wall -Werror -Wextra -I ./mlx -Lmlx -lmlx -framework OpenGL -framework AppKit main.c get_next_line.c get_next_line_utils.c ft_split.c check_walls.c cub_utils.c  rgb_colors.c key_hook.c parse_map.c player.c rays.c check_walls2.c drawing_map.c update_image.c  -o cub3D
+make: Leaving directory `/Users/abayar/Desktop/cub3D'
+ 

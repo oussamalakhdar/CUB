@@ -6,7 +6,7 @@
 /*   By: abayar <abayar@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 16:22:54 by abayar            #+#    #+#             */
-/*   Updated: 2022/08/09 11:21:10 by abayar           ###   ########.fr       */
+/*   Updated: 2022/08/17 19:05:46 by abayar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <fcntl.h>
-# include <mlx.h>
+# include "mlx.h"
 # include "get_next_line.h"
 # include <math.h>
 # include <stdint.h>
